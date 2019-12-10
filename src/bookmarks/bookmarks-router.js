@@ -7,7 +7,7 @@ const bodyParser = express.json();
 
 const bookmarks = [
   {
-    id: 1,
+    id: uuid(),
     name: 'Test',
     description: 'This is a bookmark'
   }
@@ -59,14 +59,14 @@ bookmarksRouter
     const result = bookmarks.find(b => b.id === id);
 
     if(!result) {
-      logger.error(`Bookmark with id ${id} no found.`)
+      logger.error(`Bookmark with id ${id} not found.`)
       return res
         .status(404)
         .send('Bookmark not found')
     }
 
     res.json(result)
-  });
+  })
   .delete((req, res) => {
     const { id } = req.params
     const index = bookmarks.findIndex(b => b.id === id)

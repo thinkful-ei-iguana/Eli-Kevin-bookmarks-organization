@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
   res.send('Hello, bookmarks!');
 });
 
+/*
 const validateBearerToken = (req, res, next) => {
   const token = process.env.API_TOKEN;
   const auth = req.get('Authorization');
@@ -26,6 +27,7 @@ const validateBearerToken = (req, res, next) => {
 };
 
 app.use(validateBearerToken);
+*/
 
 app.use(function errorHandler(error, req, res, next) {
   let response;

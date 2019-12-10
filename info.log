@@ -6,3 +6,7 @@
 {"message":"Name is required","level":"error"}
 {"message":"Description is required","level":"error"}
 {"message":"Bookmark with id e47b535e-2934-4b90-b56b-a3a472651b3d created","level":"info"}
+{"message":"Bookmark with id 1 no found.","level":"error"}
+{"message":"Bookmark with id 1 no found.","level":"error"}
+{"message":"Bookmark with id 0 no found.","level":"error"}
+{"message":"Bookmark with id 1 no found.","level":"error"}
