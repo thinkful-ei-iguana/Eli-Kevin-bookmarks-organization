@@ -1,6 +1,6 @@
-const express = require("express");
-const logger = require("../logger");
-const uuid = require("uuid/v4");
+const express = require('express');
+const logger = require('../logger');
+const uuid = require('uuid/v4');
 
 const bookmarksRouter = express.Router();
 const bodyParser = express.json();
@@ -8,18 +8,18 @@ const bodyParser = express.json();
 const bookmarks = [
   {
     id: 1,
-    name: "Test",
-    description: "This is a bookmark"
+    name: 'Test',
+    description: 'This is a bookmark'
   }
 ];
 
 const example = {
-  name: "Test2",
-  description: "Also a test"
+  name: 'Test2',
+  description: 'Also a test'
 };
 
 bookmarksRouter
-  .route("/bookmarks")
+  .route('/bookmarks')
   .get((req, res) => {
     res.json(bookmarks);
   })
@@ -27,12 +27,12 @@ bookmarksRouter
     const { name, description } = req.body;
 
     if (!name) {
-      logger.error("Name is required");
-      return res.status(400).send("Invalid name");
+      logger.error('Name is required');
+      return res.status(400).send('Invalid name');
     }
     if (description.length <= 0) {
-      logger.error("Description is required");
-      return res.status(400).send("Invalid description");
+      logger.error('Description is required');
+      return res.status(400).send('Invalid description');
     }
 
     const id = uuid();
@@ -51,15 +51,17 @@ bookmarksRouter
       .json({ id });
   });
 
-bookmarksRouter.route("/bookmarks/:id").get((req, res) => {
+bookmarksRouter.route('/bookmarks/:id').get((req, res) => {
   const { id } = req.params;
 
-  return bookmarks[id]
-    ? res.json(bookmarks[id])
-    : res.status(404).send("invalid id");
+  const result = bookmarks.find(b => b.id === id);
+
+  return result
+    ? res.json(result)
+    : res.status(404).send('invalid id');
 });
 
-bookmarksRouter.route("/bookmarks/:id").delete((req, res) => {
+bookmarksRouter.route('/bookmarks/:id').delete((req, res) => {
   const { id } = req.params;
 
   bookmarks.splice(bookmarks.findIndex(b => b.id == id), 1);
